@@ -78,14 +78,15 @@ pipeline{
         }
         stage('Run docker container'){
             steps{
-                sh "docker run -d -p 8070:8080 signin/hello"
+                sh "docker run -itd --name democontainer -p 8080:8080 demo"
+                //sh "docker run -d -p 8070:8080 signin/hello"
             }
         }
-        stage('Run docker container on remote hosts'){
+        /*stage('Run docker container on remote hosts'){
             steps{
                 sh "docker -H ssh://ec2-user@ip-43.205.143.129 run -d -p 8070:8080 signin/hello"
             }
-        }
+        }*/
         /*stage('Docker Build'){
             agent{
                 label 'doc'
