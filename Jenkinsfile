@@ -62,7 +62,7 @@ pipeline{
         stage('Docker Image Build & Tag'){
             steps{
                 sh '''docker build -t newdemo:${DOCKER_TAG} .    
-                    docker tag newdemo signin/hello:${DOCKER_TAG} .
+                    docker tag newdemo signin/hello:${DOCKER_TAG}
                     '''   
             }
         }
