@@ -64,8 +64,7 @@ pipeline{
         }*/
         stage('Docker Image Build & Tag'){
             steps{
-                sh '''docker image prune --all
-                    docker build -t demo:${DOCKER_TAG} .    
+                sh '''docker build -t demo:${DOCKER_TAG} .    
                     docker tag demo signin/hello:${DOCKER_TAG}
                     '''   
             }
