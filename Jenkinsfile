@@ -52,7 +52,7 @@ pipeline{
            }
         }*/
         
-        stage('Artifactory Pull on docker') {
+        /*stage('Artifactory Pull on docker') {
             agent {
                 label 'doc'
             }
@@ -61,7 +61,7 @@ pipeline{
                 sh 'wget --user=$nexurl --password=$nexpwd "http://$ARTURL/repository/$ARTREPO/com/ltidevops/LoginWebApp/1/LoginWebApp-$ARTVER.$ARTTYPE"'
             }
             }
-        }
+        }*/
         stage('Docker Image Build & Tag'){
             agent{
                 label 'doc'
