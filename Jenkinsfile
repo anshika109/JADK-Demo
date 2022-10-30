@@ -78,7 +78,7 @@ pipeline{
         }
         stage('Run docker container'){
             steps{
-                sh "docker run -itd --name democontainer1 -p 8003:8080 demo"
+                sh "docker run -itd --name abccon -p 8003:8080 demo"
                 //sh "docker run -d -p 8070:8080 signin/hello"
             }
         }
