@@ -67,8 +67,8 @@ pipeline{
                 label 'doc'
             }
             steps{
-                sh '''docker build -t demo:${DOCKER_TAG} .    
-                    docker tag demo signin/hello:${DOCKER_TAG}
+                sh '''docker build -t newdemo:${DOCKER_TAG} .    
+                    docker tag newdemo signin/hello:${DOCKER_TAG}
                     '''   
             }
         }
@@ -78,7 +78,7 @@ pipeline{
             }
             steps{
                 withDockerRegistry(credentialsId: 'docker', url:'') {
-                    sh "docker push signin/hello:${DOCKER_TAG}"
+                    sh "docker push newdemo signin/hello:${DOCKER_TAG}"
                 }
             }
         }
@@ -87,7 +87,7 @@ pipeline{
                 label 'doc'
             }
             steps{
-                sh "docker run -itd --name newcon -p 8003:8080 demo"
+                sh "docker run -itd --name newcon -p 8003:8080 newdemo"
                 //sh "docker run -d -p 8070:8080 signin/hello"
             }
         }
