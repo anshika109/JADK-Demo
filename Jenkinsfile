@@ -63,6 +63,9 @@ pipeline{
             }
         }*/
         stage('Docker Image Build & Tag'){
+            agent{
+                label 'doc'
+            }
             steps{
                 sh '''docker build -t demo:${DOCKER_TAG} .    
                     docker tag demo signin/hello:${DOCKER_TAG}
@@ -70,6 +73,9 @@ pipeline{
             }
         }
         stage('Publish Docker image to hub'){
+             agent{
+                label 'doc'
+            }
             steps{
                 withDockerRegistry(credentialsId: 'docker', url:'') {
                     sh "docker push signin/hello:${DOCKER_TAG}"
@@ -77,8 +83,11 @@ pipeline{
             }
         }
         stage('Run docker container'){
+             agent{
+                label 'doc'
+            }
             steps{
-                sh "docker run -itd --name abccon -p 8003:8080 demo"
+                sh "docker run -itd --name newcon -p 8003:8080 demo"
                 //sh "docker run -d -p 8070:8080 signin/hello"
             }
         }
