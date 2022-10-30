@@ -53,9 +53,6 @@ pipeline{
         }*/
         
         /*stage('Artifactory Pull on docker') {
-            agent {
-                label 'doc'
-            }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus3', passwordVariable: 'nexpwd', usernameVariable: 'nexurl')]) {
                 sh 'wget --user=$nexurl --password=$nexpwd "http://$ARTURL/repository/$ARTREPO/com/ltidevops/LoginWebApp/1/LoginWebApp-$ARTVER.$ARTTYPE"'
@@ -63,9 +60,6 @@ pipeline{
             }
         }*/
         stage('Docker Image Build & Tag'){
-            agent{
-                label 'doc'
-            }
             steps{
                 sh '''docker build -t newdemo:${DOCKER_TAG} .    
                     docker tag newdemo signin/hello:${DOCKER_TAG}
@@ -73,9 +67,6 @@ pipeline{
             }
         }
         stage('Publish Docker image to hub'){
-             agent{
-                label 'doc'
-            }
             steps{
                 withDockerRegistry(credentialsId: 'docker', url:'') {
                     sh "docker push newdemo signin/hello:${DOCKER_TAG}"
