@@ -22,10 +22,10 @@
       copy:
         src: ./target/LoginWebApp-1.war
         dest: ./apache-tomcat-8.5.83/webapps/
-    - name: start tomcat
-      shell: sh apache-tomcat-8.5.83/bin/catalina.sh start
+    
       
-      notify: restart tomcat
+    - name: restart tomcat
+      service: name=tomcat state=restarted
 
     - name: Install Tomcat init script
       copy: src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=0755
