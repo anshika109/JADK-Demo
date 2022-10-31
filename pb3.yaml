@@ -1,0 +1,26 @@
+---
+- name: Tomcat Deployment
+  hosts: all
+  become: true
+  become_method: sudo
+  become_user: root
+  vars:
+    URL_ART: "http://13.232.232.190:8081/repository/demo/com/ltidevops/LoginWebApp/1/LoginWebApp-1.war"
+    URL_TOM: "https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.83/bin/apache-tomcat-8.5.83.zip"
+    URL_TOMZIP: "{{ URL_TOM.split('/') | last }}"
+  tasks:
+    - name: Download tomcat 8
+      get_url:
+        url: "{{URL_TOM}}"
+        dest: ./
+    - name: Extract tomcat
+      unarchive:
+        src: ./{{ URL_TOMZIP }}
+        dest: ./
+        remote_src: true
+    - name: Download Artifact
+      copy:
+        src: ./target/LoginWebApp-1.war
+        dest: ./apache-tomcat-8.5.83/webapps/
+    - name: start tomcat
+      shell: sh apache-tomcat-8.5.83/bin/catalina.sh start
