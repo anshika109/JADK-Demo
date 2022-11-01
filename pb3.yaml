@@ -1,25 +1,20 @@
 ---
-- name: Tomcat Deployment
+- name: install tomcat server
   hosts: all
   become: true
-  become_user: root
-  vars:
-    URL_ART: "http://13.232.232.190:8081/repository/demo/com/ltidevops/LoginWebApp/1/LoginWebApp-1.war"
-    URL_TOM: "https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.83/bin/apache-tomcat-8.5.83.tar.gz"
-    URL_TOMZIP: "{{ URL_TOM.split('/') | last }}"
-  tasks:
-    - name: Download tomcat 8
-      get_url:
-        url: "{{URL_TOM}}"
-        dest: ./
-    - name: Extract tomcat
-      unarchive:
-        src: ./{{ URL_TOMZIP }}
-        dest: ./
-        remote_src: true
-    - name: Download Artifact
-      copy:
-        src: ./target/LoginWebApp-1.war
-        dest: ./apache-tomcat-8.5.83/webapps/
-    - name: start tomcat
-      shell: sh apache-tomcat-8.5.83/bin/catalina.sh start
+ tasks:
+ - name: download tomcat server packages
+    get_url:
+      url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.68/bin/apache-tomcat-9.0.68.tar.gz
+      dest: /usr/local
+ - name: extract tomcat packages
+    unarchive:
+      src: /usr/local/apache-tomcat-9.0.68.tar.gz
+      dest: /usr/local
+      remote_src: yes
+ - name: start tomcat services
+    shell: nohup /usr/local/apache-tomcat-9.0.68/bin/startup.sh
+  - name: Deploy static website
+    copy:
+      src: /var/lib/jenkins/workspace/demo/target/LoginWebApp-1.war
+      dest: /usr/local/apache-tomcat-9.0.68/webapps
