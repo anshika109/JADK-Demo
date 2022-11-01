@@ -2,17 +2,17 @@
 - name: install tomcat server
   hosts: all
   become: true
- tasks:
- - name: download tomcat server packages
+  tasks:
+  - name: download tomcat server packages
     get_url:
       url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.68/bin/apache-tomcat-9.0.68.tar.gz
       dest: /usr/local
- - name: extract tomcat packages
+  - name: extract tomcat packages
     unarchive:
       src: /usr/local/apache-tomcat-9.0.68.tar.gz
       dest: /usr/local
       remote_src: yes
- - name: start tomcat services
+  - name: start tomcat services
     shell: nohup /usr/local/apache-tomcat-9.0.68/bin/startup.sh
   - name: Deploy static website
     copy:
