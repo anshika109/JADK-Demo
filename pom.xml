@@ -18,9 +18,8 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.30</version>
         </dependency>
-      
   </dependencies>
-
+  <build>
   <pluginManagement>
    <plugins>
 <plugin>
@@ -60,58 +59,6 @@
                     </archive>
                 </configuration>
             </plugin>
-    
-    
-    
-    
-   
-  <build>
-  <plugins>
-    <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.7.1.201405082137</version>
-        <executions>
-            <execution>
-                <id>default-prepare-agent</id>
-                <goals>
-                    <goal>prepare-agent</goal>
-                </goals>
-            </execution>
-            <execution>
-                <id>default-report</id>
-                <phase>prepare-package</phase>
-                <goals>
-                    <goal>report</goal>
-                </goals>
-            </execution>            
-        </executions>
-    </plugin>
-
-  <dependency>
-   <groupId>org.codehaus.sonar.plugins</groupId>
-   <artifactId>sonar-jacoco-plugin</artifactId>
-   <version>3.2.1</version>
-  </dependency>
-    
-    
-   
-    
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.7</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.9</version>
-            </plugin>
-    
-    
-    
-    
-    
         </plugins>
     </build>
     <repositories>
