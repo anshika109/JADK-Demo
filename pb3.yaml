@@ -16,5 +16,5 @@
     shell: nohup /usr/local/apache-tomcat-9.0.68/bin/startup.sh
   - name: Deploy static website
     copy:
-      src: /var/lib/jenkins/workspace/demo/target/LoginWebApp-1.war
+      src: ./target/LoginWebApp-1.war
       dest: /usr/local/apache-tomcat-9.0.68/webapps
