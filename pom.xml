@@ -63,56 +63,17 @@
     
     
     
-        <plugin>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>2.19.1</version>
-            <dependencies>
-                <dependency>
-                    <groupId>org.junit.platform</groupId>
-                    <artifactId>junit-platform-surefire-provider</artifactId>
-                    <version>1.0.1</version>
-                </dependency>
-            </dependencies>
-        </plugin>
-        <plugin>
-            <groupId>org.jacoco</groupId>
-            <artifactId>jacoco-maven-plugin</artifactId>
-            <version>0.7.9</version>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>prepare-agent</goal>
-                    </goals>
-                </execution>
-                <execution>
-                    <id>report</id>
-                    <phase>test</phase>
-                    <goals>
-                        <goal>report</goal>
-                    </goals>
-                </execution>
-                <execution>
-                    <id>jacoco-check</id>
-                    <phase>test</phase>
-                    <goals>
-                        <goal>check</goal>
-                    </goals>
-                    <configuration>
-                        <rules>
-                            <rule>
-                                <element>PACKAGE</element>
-                                <limits>
-                                    <limit>
-                                        <counter>LINE</counter>
-                                        <value>COVEREDRATIO</value>
-                                    </limit>
-                                </limits>
-                            </rule>
-                        </rules>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
+       <plugin>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.7.2-SNAPSHOT</version>
+      </plugin>
+
+  <dependency>
+   <groupId>org.codehaus.sonar.plugins</groupId>
+   <artifactId>sonar-jacoco-plugin</artifactId>
+   <version>3.2.1</version>
+  </dependency>
     
     
     
