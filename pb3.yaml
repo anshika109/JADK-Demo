@@ -16,7 +16,7 @@
     - name: Extract tomcat
       unarchive:
         src: ./{{ URL_TOMZIP }}
-        dest: /opt/
+        dest: ./
         remote_src: true
     - name: Download Artifact
       copy:
