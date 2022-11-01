@@ -2,8 +2,6 @@
 - name: Tomcat Deployment
   hosts: all
   become: true
-  become_method: sudo
-  become_user: root
   vars:
     URL_ART: "http://13.232.232.190:8081/repository/demo/com/ltidevops/LoginWebApp/1/LoginWebApp-1.war"
     URL_TOM: "https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.83/bin/apache-tomcat-8.5.83.tar.gz"
