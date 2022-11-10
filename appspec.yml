@@ -1,8 +1,8 @@
 version: 0.0
 os: linux
 files:
-  - source: ./install.txt
-    destination: /tmp/CodeDeployExample
+  - source: /
+    destination: /home/ec2-user
 hooks:
   BeforeInstall:
     - location: ./scripts/before-install.sh
