@@ -1,7 +1,7 @@
 version: 0.0
 os: linux
 files:
-  - source: /src/main/webapp
+  - source: /
     destination: /home/ec2-user
 hooks:
   BeforeInstall:
