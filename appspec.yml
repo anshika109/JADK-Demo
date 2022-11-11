@@ -1,18 +1,17 @@
 version: 0.0
 os: linux
 files:
-  - source: /
-    destination: /home/ec2-user
+  - source: /.war
+    destination: /usr/share/apache-tomcat-9.0.63/webapps/
+    
+file_exists_behavior: OVERWRITE
+
 hooks:
-  BeforeInstall:
-    - location: ./scripts/before-install.sh
-      timeout: 900
   AfterInstall:
-    - location: ./scripts/after-install.sh
-      timeout: 900
-  ApplicationStart:
-    - location: ./scripts/application-start.sh
-      timeout: 900
-  ValidateService:
-    - location: ./scripts/validate-service.sh
-      timeout: 900
+    - location: ./scripts/start_server.sh
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: ./scripts/stop_server.sh
+      timeout: 300
+      runas: root
