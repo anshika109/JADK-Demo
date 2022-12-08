@@ -12,9 +12,9 @@ nameOverride: ""
 fullnameOverride: ""
 
 container:
-  port: 9090
+  port: 8080
 
 service:
   protocol: TCP
   type: LoadBalancer
-  port: 9090
+  port: 8080
