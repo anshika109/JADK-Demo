@@ -1,0 +1,19 @@
+replicaCount: 2
+
+image:
+  name: javatest
+  repository: 230601024369.dkr.ecr.ap-south-1.amazonaws.com/demo
+  pullPolicy: IfNotPresent
+
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+container:
+  port: 9090
+
+service:
+  protocol: TCP
+  type: ClusterIP
+  port: 9090
