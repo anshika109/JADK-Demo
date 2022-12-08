@@ -3,6 +3,7 @@ replicaCount: 2
 image:
   name: firstimg
   repository: docker.io/signin/helm
+  tag: "latest"
   pullPolicy: IfNotPresent
 
 
