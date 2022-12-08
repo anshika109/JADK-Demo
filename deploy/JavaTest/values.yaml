@@ -15,5 +15,5 @@ container:
 
 service:
   protocol: TCP
-  type: ClusterIP
+  type: LoadBalancer
   port: 9090
