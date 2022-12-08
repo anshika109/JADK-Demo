@@ -1,8 +1,8 @@
 replicaCount: 2
 
 image:
-  name: javatest
-  repository: 230601024369.dkr.ecr.ap-south-1.amazonaws.com/demo
+  name: firstimg
+  repository: https://hub.docker.com/repository/docker/signin/helm
   pullPolicy: IfNotPresent
 
 
