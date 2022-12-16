@@ -1,7 +1,6 @@
 ---
 
-- hosts: all
-
+- hosts: 13.233.144.238
+  become: yes
   tasks:
-    - name: ping
-      shell: ping -c 1 -w 13.233.144.238
+   - ping
