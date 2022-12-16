@@ -1,6 +1,5 @@
 ---
-
-- hosts: 13.233.144.238
-  become: yes
-  tasks:
-   - ping
+ - name: "Get ping response"
+   hosts: 13.233.144.238
+   tasks:
+   - action: ping
