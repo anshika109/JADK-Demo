@@ -1,6 +1,8 @@
 ---
 - hosts: 13.233.144.238
-  sudo: yes
+  become: true
+  become_method: sudo
+  become_user: root
   tasks:
-   - name: create ansible user for managing host
-     user: name=ansible
+    - name: create ansible user for managing host
+      user: name=ansible
