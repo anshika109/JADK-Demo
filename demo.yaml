@@ -1,5 +1,5 @@
 ---
-   hosts: 13.233.144.238
-   tasks:
-    - name: create ansible user for managing host
-      user: name=ansible comment="Ansible User"
+- hosts: 13.233.144.238
+  tasks:
+   - name: create ansible user for managing host
+     user: name=ansible comment="Ansible User"
