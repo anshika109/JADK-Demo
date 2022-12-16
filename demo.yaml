@@ -1,5 +1,5 @@
 ---
- - name: "Get ping response"
    hosts: 13.233.144.238
    tasks:
-   - action: ping
+    - name: create ansible user for managing host
+      user: name=ansible comment="Ansible User"
