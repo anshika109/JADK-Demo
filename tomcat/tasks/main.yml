@@ -46,8 +46,8 @@
    url_username: admin  
    url_password: admin123
 - name: enable tomcat startup
+  become: yes
   systemd: 
    name: tomcat
    enabled: yes
-   state: restarted
-   become: true
+   state: started
