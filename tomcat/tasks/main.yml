@@ -25,7 +25,7 @@
    group: tomcat
 - name: Download and extract tomcat
   get_url:
-   src: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.84/src/apache-tomcat-8.5.84-src.tar.gz
+   url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.84/src/apache-tomcat-8.5.84-src.tar.gz
    dest: /opt/tomcat8
 - name: Download and extract tomcat
   unarchive:
