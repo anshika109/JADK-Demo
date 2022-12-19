@@ -47,6 +47,8 @@
    artifact_id: "{{aid}}"
    group_id: "{{gid}}"
    src: "{{URL_ART}}"
+   extension: war
+   version: 1
    dest: /opt/tomcat8/apache-tomcat-8.5.84-src/webapps/ 
    remote_src: true
 - name: enable tomcat startup
