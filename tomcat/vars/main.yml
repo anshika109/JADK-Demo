@@ -3,5 +3,5 @@
   nexusername: admin
   nexpwd: admin123
   URL_ART: "http://13.232.232.190:8081/repository/demo/com/ltidevops/LoginWebApp/1/LoginWebApp-1.war"
-  URL_TOM: "https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.83/bin/apache-tomcat-8.5.83.zip"
+  URL_TOM: "https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.84/src/apache-tomcat-8.5.84-src.tar.gz"
   URL_TOMZIP: "{{ URL_TOM.split('/') | last }}"
