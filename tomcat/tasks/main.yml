@@ -48,9 +48,9 @@
    group_id: "{{gid}}"
    src: "{{URL_ART}}"
    extension: war
-   version: 1
+   version: "1"
    dest: /opt/tomcat8/apache-tomcat-8.5.84-src/webapps/ 
-   remote_src: true
+   remote_src: True
 - name: enable tomcat startup
   systemd: 
    name: tomcat
