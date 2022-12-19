@@ -23,11 +23,11 @@
    mode: 0777
    owner: tomcat
    group: tomcat
-- name: Download and extract tomcat
+- name: Download tomcat
   get_url:
    url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.84/src/apache-tomcat-8.5.84-src.tar.gz
    dest: /opt/tomcat8
-- name: Download and extract tomcat
+- name: Extract tomcat
   unarchive:
    src: /opt/tomcat8/apache-tomcat-8.5.84-src.tar.gz
    dest: /opt/tomcat8
