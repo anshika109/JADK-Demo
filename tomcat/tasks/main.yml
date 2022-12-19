@@ -41,7 +41,9 @@
    state: directory
 - name: Download war file from Nexus
   become: yes
-  copy: 
+  maven_artifact: 
+   username: "{{nexusername}}"
+   password: "{{nexpwd}}"
    src: "{{URL_ART}}"
    dest: /opt/tomcat8/apache-tomcat-8.5.84-src/webapps/ 
    remote_src: true
