@@ -40,8 +40,6 @@
    mode: 0777
    state: directory
 - name: Change tomcat url name to tomcat8
-  become: yes
-  become_user: tomcat
   shell: "mv /opt/tomcat8/apache*/* /opt/tomcat8"
 - name: Download war file from Nexus
   become: yes
