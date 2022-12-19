@@ -29,8 +29,6 @@
    dest: /opt/tomcat8
    mode: 0755
    remote_src: true
-   group: tomcat
-   owner: tomcat
 - name: Change tomcat url name to tomcat8
   become: yes
   become_user: tomcat
