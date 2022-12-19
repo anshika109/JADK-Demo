@@ -3,7 +3,7 @@
 - name: Download Open JDK
   become: yes
   yum: 
-   name: openjdk-8-jdk
+   name: java
    state: present
 - name: Create the group
   become: yes
