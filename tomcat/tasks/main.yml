@@ -39,13 +39,11 @@
    group: tomcat
    mode: 0777
    state: directory
-- name: Change tomcat url name to tomcat8
-  shell: "mv /opt/tomcat8/apache*/* /opt/tomcat8"
 - name: Download war file from Nexus
   become: yes
   copy: 
    src: "{{URL_ART}}"
-   dest: /opt/tomcat8/webapps/ 
+   dest: /opt/tomcat8/apache-tomcat-8.5.84-src/webapps/ 
    remote_src: true
 - name: enable tomcat startup
   systemd: 
