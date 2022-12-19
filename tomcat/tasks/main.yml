@@ -40,12 +40,12 @@
    mode: 0777
    state: directory
 - name: Download war file from Nexus
-  become: yes
   maven_artifact: 
    username: "{{nexusername}}"
    password: "{{nexpwd}}"
    artifact_id: "{{aid}}"
    group_id: "{{gid}}"
+   state: present
    src: "{{URL_ART}}"
    extension: war
    version: "1"
