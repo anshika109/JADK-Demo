@@ -44,6 +44,8 @@
   maven_artifact: 
    username: "{{nexusername}}"
    password: "{{nexpwd}}"
+   artifact_id: "{{aid}}"
+   group_id: "{{gid}}"
    src: "{{URL_ART}}"
    dest: /opt/tomcat8/apache-tomcat-8.5.84-src/webapps/ 
    remote_src: true
