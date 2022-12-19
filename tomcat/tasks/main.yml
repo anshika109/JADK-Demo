@@ -20,7 +20,7 @@
   file:
    path: /opt/tomcat8
    state: directory
-   mode: 0755
+   mode: 0777
    owner: tomcat
    group: tomcat
 - name: Download and extract tomcat
@@ -37,7 +37,7 @@
    path: /opt/tomcat8
    owner: tomcat
    group: tomcat
-   mode: 0755
+   mode: 0777
    state: directory
 - name: Change tomcat url name to tomcat8
   become: yes
