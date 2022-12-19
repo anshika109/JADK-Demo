@@ -1,0 +1,48 @@
+---
+# tasks file for tomcat
+- name: Download Open JDK
+  become: yes
+  apt: 
+   name: openjdk-8-jre-headless
+   state: present
+- name: Create the group
+  become: yes
+  group:
+   name: tomcat
+   state: present
+- name: Create the user
+  become: yes
+  user: 
+   name: tomcat
+   state: present
+- name: Create directory /opt/tomcat8
+  become: yes
+  file:
+   path: /opt/tomcat8
+   state: directory
+   mode: 0755
+   owner: tomcat
+   group: tomcat
+- name: Download and extract tomcat
+  unarchive:
+   src: "{{URL_TOM}}"
+   dest: /opt/tomcat8
+   mode: 0755
+   remote_src: true
+   group: tomcat
+   owner: tomcat
+- name: Change tomcat url name to tomcat8
+  become: yes
+  become_user: tomcat
+  shell: "mv /opt/tomcat8/apache*/* /opt/tomcat8"
+- name: Download war file from Nexus
+  become: yes
+  copy: 
+   src: "{{URL_ART}}"
+   dest: /opt/tomcat8/webapps/ 
+- name: enable tomcat startup
+  systemd: 
+   name: tomcat
+   enabled: yes
+   state: restarted
+   become: true
