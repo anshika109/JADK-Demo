@@ -45,9 +45,5 @@
    dest: /opt/tomcat8/apache-tomcat-8.5.84-src/webapps/ 
    url_username: admin  
    url_password: admin123
-- name: enable tomcat startup
-  become: yes
-  systemd: 
-   name: tomcat
-   enabled: yes
-   state: started
+- name: start tomcat
+  shell: sh apache-tomcat-8.5.84-src/bin/catalina.sh start
