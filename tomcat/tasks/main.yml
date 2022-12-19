@@ -2,8 +2,6 @@
 # tasks file for tomcat
 - name: Download Open JDK
   become: yes
-  become_method: sudo
-  become_user: root
   yum: 
    name: java
    state: present
@@ -29,6 +27,7 @@
   unarchive:
    src: "{{URL_TOM}}"
    dest: /opt/tomcat8
+   become_user: tomcat
    mode: 0755
    remote_src: true
    group: tomcat
