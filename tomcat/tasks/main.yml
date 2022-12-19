@@ -46,6 +46,7 @@
   copy: 
    src: "{{URL_ART}}"
    dest: /opt/tomcat8/webapps/ 
+   remote_src: true
 - name: enable tomcat startup
   systemd: 
    name: tomcat
