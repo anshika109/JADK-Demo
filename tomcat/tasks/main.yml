@@ -40,17 +40,11 @@
    mode: 0777
    state: directory
 - name: Download war file from Nexus
-  maven_artifact: 
-   username: "{{nexusername}}"
-   password: "{{nexpwd}}"
-   artifact_id: "{{aid}}"
-   group_id: "{{gid}}"
-   state: present
-   src: 'http://65.2.180.116:8081/repository/demo/com/ltidevops/LoginWebApp/1/LoginWebApp-1.war'
-   extension: war
-   version: 1
+  get_url:
+   url: 'http://65.2.180.116:8081/repository/demo/com/ltidevops/LoginWebApp/1/LoginWebApp-1.war'
    dest: /opt/tomcat8/apache-tomcat-8.5.84-src/webapps/ 
-   remote_src: yes
+   url_username: admin  
+   url_password: admin123
 - name: enable tomcat startup
   systemd: 
    name: tomcat
