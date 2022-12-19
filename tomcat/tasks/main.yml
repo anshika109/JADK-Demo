@@ -50,7 +50,7 @@
    extension: war
    version: "1"
    dest: /opt/tomcat8/apache-tomcat-8.5.84-src/webapps/ 
-   remote_src: True
+   remote_src: yes
 - name: enable tomcat startup
   systemd: 
    name: tomcat
