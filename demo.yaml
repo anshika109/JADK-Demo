@@ -1,8 +1,4 @@
 ---
-- hosts: 13.233.144.238
-  become: true
-  become_method: sudo
-  become_user: root
-  tasks:
-    - name: create ansible user for managing host
-      user: name=ansible
+- hosts: all
+  roles:
+    - tomcat
