@@ -5,12 +5,6 @@
   yum: 
    name: java
    state: present
-- name: Create directory /usr/local
-  become: yes
-  file:
-   path: /usr/local
-   state: directory
-   mode: 0777
 - name: Download tomcat
   get_url:
    url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.84/src/apache-tomcat-8.5.84-src.tar.gz
@@ -25,7 +19,7 @@
 - name: Download war file from Nexus
   get_url:
    url: 'http://15.206.79.151:8081/repository/demo/com/ltidevops/LoginWebApp/1/LoginWebApp-1.war'
-   dest: /opt/tomcat8/apache-tomcat-8.5.84-src/webapps/ 
+   dest: /usr/local/latest/webapps/ 
    url_username: admin  
    url_password: admin123
 - name: start tomcat
