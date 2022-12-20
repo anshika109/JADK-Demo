@@ -41,7 +41,7 @@
    state: directory
 - name: Download war file from Nexus
   get_url:
-   url: 'http://65.2.180.116:8081/repository/demo/com/ltidevops/LoginWebApp/1/LoginWebApp-1.war'
+   url: 'http://15.206.79.151:8081/repository/demo/com/ltidevops/LoginWebApp/1/LoginWebApp-1.war'
    dest: /opt/tomcat8/apache-tomcat-8.5.84-src/webapps/ 
    url_username: admin  
    url_password: admin123
