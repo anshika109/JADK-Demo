@@ -5,24 +5,12 @@
   yum: 
    name: java
    state: present
-- name: Create the group
-  become: yes
-  group:
-   name: tomcat
-   state: present
-- name: Create the user
-  become: yes
-  user: 
-   name: tomcat
-   state: present
 - name: Create directory /opt/tomcat8
   become: yes
   file:
    path: /opt/tomcat8
    state: directory
    mode: 0777
-   owner: tomcat
-   group: tomcat
 - name: Download tomcat
   get_url:
    url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.84/src/apache-tomcat-8.5.84-src.tar.gz
@@ -35,8 +23,6 @@
 - name: Change ownership of tomcat directory
   file:
    path: /opt/tomcat8/apache-tomcat-8.5.84-src/
-   owner: tomcat
-   group: tomcat
    mode: 0755
    state: directory
 - name: Download war file from Nexus
