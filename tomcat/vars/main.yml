@@ -7,3 +7,4 @@
   URL_ART: "http://15.206.79.151:8081/repository/demo/com/ltidevops/LoginWebApp/1/LoginWebApp-1.war"
   URL_TOM: "https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.84/src/apache-tomcat-8.5.84-src.tar.gz"
   URL_TOMZIP: "{{ URL_TOM.split('/') | last }}"
+  tomcat_port: 8080
