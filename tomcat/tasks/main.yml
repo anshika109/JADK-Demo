@@ -15,13 +15,6 @@
   get_url:
    url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.84/src/apache-tomcat-8.5.84-src.tar.gz
    dest: /opt/tomcat8
-- name: Change ownership of tomcat directory
-  file:
-   path: /opt/tomcat8/apache-tomcat-8.5.84-src/
-   owner: root
-   group: root
-   mode: 0755
-   state: directory
 - name: Extract tomcat
   unarchive:
    src: /opt/tomcat8/apache-tomcat-8.5.84-src.tar.gz
