@@ -46,4 +46,4 @@
    url_username: admin  
    url_password: admin123
 - name: start tomcat
-  shell: sh apache-tomcat-8.5.84-src/bin/catalina.sh start
+  shell: sh apache-tomcat-8.5.84-src/bin/startup.sh 
