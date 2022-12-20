@@ -14,8 +14,6 @@
    src: /usr/local/apache-tomcat-8.5.84-src.tar.gz
    dest: /usr/local
    remote_src: true
-- name: renaming tomcat home
-  command: mv /usr/local/apache-tomcat-8.5.84-src /usr/local/latest
 - name: Download war file from Nexus
   get_url:
    url: 'http://15.206.79.151:8081/repository/demo/com/ltidevops/LoginWebApp/1/LoginWebApp-1.war'
