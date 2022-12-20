@@ -5,21 +5,23 @@
   yum: 
    name: java
    state: present
-- name: Create directory /opt/tomcat8
+- name: Create directory /usr/local
   become: yes
   file:
-   path: /opt/tomcat8
+   path: /usr/local
    state: directory
    mode: 0777
 - name: Download tomcat
   get_url:
    url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.84/src/apache-tomcat-8.5.84-src.tar.gz
-   dest: /opt/tomcat8
+   dest: /usr/local
 - name: Extract tomcat
   unarchive:
-   src: /opt/tomcat8/apache-tomcat-8.5.84-src.tar.gz
-   dest: /opt/tomcat8
+   src: /usr/local/apache-tomcat-8.5.84-src.tar.gz
+   dest: /usr/local
    remote_src: true
+- name: renaming tomcat home
+  command: mv /usr/local/apache-tomcat-8.5.84-src /usr/local/latest
 - name: Download war file from Nexus
   get_url:
    url: 'http://15.206.79.151:8081/repository/demo/com/ltidevops/LoginWebApp/1/LoginWebApp-1.war'
@@ -27,4 +29,4 @@
    url_username: admin  
    url_password: admin123
 - name: start tomcat
-  shell: sh /opt/tomcat8/apache-tomcat-8.5.84-src/bin/startup.sh 
+  shell: nohup /usr/local/latest/bin/startup.sh & 
