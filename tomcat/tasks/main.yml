@@ -37,7 +37,7 @@
    path: /opt/tomcat8/apache-tomcat-8.5.84-src/
    owner: tomcat
    group: tomcat
-   mode: 0777
+   mode: 0755
    state: directory
 - name: Download war file from Nexus
   get_url:
