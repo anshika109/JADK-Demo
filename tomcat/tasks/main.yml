@@ -22,7 +22,7 @@
 - name: move apache tomcat to tomcat directory
   shell: "mv /opt/apache-tomcat-9.0.70 /opt/tomcat/"
 - name: changing ownership permissions of /bin/*.sh files
-  command: chmod +x /opt/tomcat/apache-tomcat-9.0.70/bin/*.sh
+  shell: "chmod +x /opt/tomcat/apache-tomcat-9.0.70/bin/*.sh"
 - name: Download war file from Nexus
   get_url:
    url: 'http://13.232.97.77:8081/repository/demo/com/ltidevops/LoginWebApp/1/LoginWebApp-1.war'
