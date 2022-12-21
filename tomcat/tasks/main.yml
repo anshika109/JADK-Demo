@@ -7,18 +7,27 @@
    state: present
 - name: Download tomcat
   get_url:
-   url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.84/src/apache-tomcat-8.5.84-src.tar.gz
-   dest: /usr/local
+   url: https://downloads.apache.org/tomcat/tomcat-9/v9.0.70/bin/apache-tomcat-9.0.70.tar.gz
+   dest: /opt
 - name: Extract tomcat
   unarchive:
-   src: /usr/local/apache-tomcat-8.5.84-src.tar.gz
-   dest: /usr/local
+   src: /opt/apache-tomcat-9.0.70.tar.gz
+   dest: /opt
    remote_src: true
+- name: create directory tomcat
+  become: yes
+  file:
+   path: /opt/tomcat
+   state: directory
+- name: move apache tomcat to tomcat directory
+  shell: "mv /opt/apache-tomcat-9.0.70 /opt/tomcat/"
+- name: changing ownership permissions of /bin/*.sh files
+  command: chmod +x /opt/tomcat/apache-tomcat-9.0.70/bin/*.sh
 - name: Download war file from Nexus
   get_url:
    url: 'http://13.232.97.77:8081/repository/demo/com/ltidevops/LoginWebApp/1/LoginWebApp-1.war'
-   dest: /usr/local/apache-tomcat-8.5.84-src/webapps/ 
+   dest: /opt/tomcat/apache-tomcat-9.0.70/webapps/ 
    url_username: admin  
    url_password: admin123
 - name: start tomcat
-  shell: nohup /usr/local/apache-tomcat-8.5.84-src/bin/catalina.sh & 
+  shell: sh /opt/tomcat/apache-tomcat-9.0.70/bin/catalina.sh start
