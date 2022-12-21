@@ -29,5 +29,13 @@
    dest: /opt/tomcat/apache-tomcat-9.0.70/webapps/ 
    url_username: admin  
    url_password: admin123
+- name: Updating users and role
+  template: 
+   src: tomcat-users.xml
+   dest: /opt/tomcat/apache-tomcat-9.0.70/conf/tomcat-users.xml
+- name: Updating context.xml restriction
+  template: 
+   src: context.xml
+   dest: /opt/tomcat/apache-tomcat-9.0.70/webapps/manager/META-INF/context.xml
 - name: start tomcat
   shell: sh /opt/tomcat/apache-tomcat-9.0.70/bin/catalina.sh start
