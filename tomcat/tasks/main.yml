@@ -31,12 +31,12 @@
    url_password: admin123
 - name: Updating users and role
   template: 
-   src: tomcat-users.xml
+   src: tomcat-users.xml.j2
    dest: /opt/tomcat/apache-tomcat-9.0.70/conf/tomcat-users.xml
    remote_src: true
 - name: Updating context.xml restriction
   template: 
-   src: context.xml
+   src: context.xml.j2
    dest: /opt/tomcat/apache-tomcat-9.0.70/webapps/manager/META-INF/context.xml
    remote_src: true
 - name: start tomcat
