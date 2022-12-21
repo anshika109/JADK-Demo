@@ -33,11 +33,11 @@
   template: 
    src: tomcat-users.xml.j2
    dest: /opt/tomcat/apache-tomcat-9.0.70/conf/tomcat-users.xml
-   remote_src: true
+   remote_src: false
 - name: Updating context.xml restriction
   template: 
    src: context.xml.j2
    dest: /opt/tomcat/apache-tomcat-9.0.70/webapps/manager/META-INF/context.xml
-   remote_src: true
+   remote_src: false
 - name: start tomcat
   shell: sh /opt/tomcat/apache-tomcat-9.0.70/bin/catalina.sh start
