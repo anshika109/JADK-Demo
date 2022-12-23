@@ -3,5 +3,7 @@
   become: true
   become_method: sudo
   become_user: root
+  vars: 
+   tomcat_port: 8090
   roles:
     - tomcat
