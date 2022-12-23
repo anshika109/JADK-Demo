@@ -14,6 +14,11 @@
    src: /opt/apache-tomcat-9.0.70.tar.gz
    dest: /opt
    remote_src: true
+- name: remove directory tomcat
+  become: yes
+  file:
+   path: /opt/tomcat
+   state: absent
 - name: create directory tomcat
   become: yes
   file:
