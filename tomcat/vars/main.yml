@@ -2,5 +2,3 @@
 # vars file for tomcat
   nexusername: admin
   nexpwd: admin123
-  URL_TOMZIP: "{{ URL_TOM.split('/') | last }}"
-  tomcat_port: 8090
