@@ -28,6 +28,11 @@
   shell: "mv /opt/apache-tomcat-9.0.70 /opt/tomcat/"
 - name: changing ownership permissions of /bin/*.sh files
   shell: "chmod +x /opt/tomcat/apache-tomcat-9.0.70/bin/*.sh"
+- name: Changing tomcat port
+  template: 
+   src: server.xml.j2
+   dest: /opt/tomcat/apache-tomcat-9.0.70/conf/server.xml
+   remote_src: false 
 - name: Updating users and role
   template: 
    src: tomcat-users.xml.j2
@@ -42,7 +47,7 @@
   get_url:
    url: 'http://3.110.162.149:8081/repository/demo/com/ltidevops/LoginWebApp/1/LoginWebApp-1.war'
    dest: /opt/tomcat/apache-tomcat-9.0.70/webapps/ 
-   url_username: admin  
+   url_username: admin 
    url_password: admin123
 - name: start tomcat
   shell: sh /opt/tomcat/apache-tomcat-9.0.70/bin/catalina.sh stop && nohup /opt/tomcat/apache-tomcat-9.0.70/bin/catalina.sh start
