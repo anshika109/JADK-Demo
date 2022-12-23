@@ -29,6 +29,11 @@
    dest: /opt/tomcat/apache-tomcat-9.0.70/webapps/ 
    url_username: admin  
    url_password: admin123
+- name: Changing tomcat port
+  template: 
+   src: server.xml.j2
+   dest: /opt/tomcat/apache-tomcat-9.0.70/conf/server.xml
+   remote_src: false
 - name: Updating users and role
   template: 
    src: tomcat-users.xml.j2
