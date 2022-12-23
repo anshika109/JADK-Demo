@@ -6,6 +6,6 @@
   vars: 
    tomcat_port: 8090
   vars_files:
-    - main.yml
+    - vault.yml
   roles:
     - tomcat
