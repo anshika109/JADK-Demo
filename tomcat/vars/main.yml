@@ -2,8 +2,5 @@
 # vars file for tomcat
   nexusername: admin
   nexpwd: admin123
-  gid: com.ltidevops
-  aid: LoginWebApp
-  URL_TOM: "https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.84/src/apache-tomcat-8.5.84-src.tar.gz"
   URL_TOMZIP: "{{ URL_TOM.split('/') | last }}"
   tomcat_port: 8090
