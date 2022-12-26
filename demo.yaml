@@ -3,7 +3,6 @@
   become: true
   become_method: sudo
   become_user: root
-  ANSIBLE_VAULT_PASSWORD_FILE=~/.vault_pass.txt
   vars: 
    tomcat_port: 8090
   roles:
