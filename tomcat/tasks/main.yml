@@ -47,7 +47,7 @@
   get_url:
    url: 'http://3.111.196.17:8081/repository/demo/com/ltidevops/LoginWebApp/1/LoginWebApp-1.war'
    dest: /opt/tomcat/apache-tomcat-9.0.70/webapps/ 
-   url_username: "{{ nexusername }}"
-   url_password: "{{ nexpwd }}"
+   url_username: admin
+   url_password: admin123
 - name: start tomcat
   shell: sh /opt/tomcat/apache-tomcat-9.0.70/bin/catalina.sh stop && nohup /opt/tomcat/apache-tomcat-9.0.70/bin/catalina.sh start
