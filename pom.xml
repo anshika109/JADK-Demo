@@ -9,12 +9,7 @@
   <url>http://maven.apache.org</url>
   <dependencies>
     
-    <dependency>
-  <groupId>org.codehaus.mojo</groupId>
-  <artifactId>sonar-maven-plugin</artifactId>
-  <version>3.9.1.2184</version>
-  <type>pom</type>
-</dependency>
+
     
      <dependency>
             <groupId>javax.servlet</groupId>
@@ -37,7 +32,13 @@
   <pluginManagement>
    <plugins>
      
-
+     
+     <plugin>
+  <groupId>org.codehaus.mojo</groupId>
+  <artifactId>sonar-maven-plugin</artifactId>
+  <version>3.9.1.2184</version>
+     </plugin>
+     
      
 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
