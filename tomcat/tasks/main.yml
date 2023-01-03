@@ -45,7 +45,7 @@
    remote_src: false
 - name: Download war file from Nexus
   get_url:
-   url: 'http://3.111.196.17:8081/repository/demo/com/ltidevops/LoginWebApp/1/LoginWebApp-1.war'
+   url: 'http://65.2.63.49:8081/repository/demo/com/ltidevops/LoginWebApp/1/LoginWebApp-1.war'
    dest: /opt/tomcat/apache-tomcat-9.0.70/webapps/ 
    url_username: "{{ nexusername }}"
    url_password: "{{ nexpwd }}"
