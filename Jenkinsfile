@@ -4,7 +4,7 @@ pipeline{
         def ARTID = 'LoginWebApp'
         def ARTTYPE = 'war'
         def ARTGRPID = 'com.ltidevops'
-        def ARTURL = '13.232.205.66:8081'  //change ip
+        def ARTURL = '13.234.37.215:8081'  //change ip
         def ARTREPO = 'demo'  
         def ARTVER = '1'
         def ARTPROTO = 'http'
@@ -29,7 +29,14 @@ pipeline{
                 sh "mvn clean package"
             }
         }
-        /*stage("Upload Artifactory to Nexus"){
+        stage('Sonar Analysis') {
+            steps{
+                withSonarQubeEnv('sonarqube-8.9.2'){
+                   sh "mvn sonar:sonar"
+                }
+            }
+        }
+        stage("Upload Artifactory to Nexus"){
             steps{
                 script{
                   def mavenPom = readMavenPom file: 'pom.xml'
@@ -50,74 +57,56 @@ pipeline{
                     )
                 }
            }
-        }*/
-        
-        /*stage('Artifactory Pull on docker') {
+        }
+        stage('Ansible Tomcat Deployment') {
+            steps {
+                ansiblePlaybook credentialsId: 'tomanscred',  
+                disableHostKeyChecking: true, 
+                installation: 'ansible', 
+                inventory: 'hosts', 
+                playbook: 'pb3.yaml'
+            }
+        }    
+        stage('Artifactory Pull on docker') {
+            agent{
+                label 'doc'  // for label, jave should be installed on slave system
+            }
             steps {
                 withCredentials([usernamePassword(credentialsId: 'nexus3', passwordVariable: 'nexpwd', usernameVariable: 'nexurl')]) {
                 sh 'wget --user=$nexurl --password=$nexpwd "http://$ARTURL/repository/$ARTREPO/com/ltidevops/LoginWebApp/1/LoginWebApp-$ARTVER.$ARTTYPE"'
             }
             }
-        }*/
+        }
         stage('Docker Image Build & Tag'){
+            agent{
+                label 'doc'
+            }
             steps{
-                sh '''docker build -t newdemo:${DOCKER_TAG} .    
-                    docker tag newdemo signin/hello:${DOCKER_TAG}
-                    '''   
+                sh 'docker build -t newimg4:$DOCKER_TAG .'
+               // sh 'docker images'
+                //sh 'docker tag newimg3 signin/loginapp:latest' // newimg3=imgName
             }
         }
         stage('Publish Docker image to hub'){
+            agent{
+                label 'doc'
+            }
             steps{
                 withDockerRegistry(credentialsId: 'docker', url:'') {
-                    sh "docker push newdemo signin/hello:${DOCKER_TAG}"
+                    sh 'docker push signin/loginapp:$DOCKER_TAG'  // loginapp=repoName
                 }
             }
         }
         stage('Run docker container'){
-             agent{
+            agent{
                 label 'doc'
             }
             steps{
-                sh "docker run -itd --name newcon -p 8003:8080 newdemo"
-                //sh "docker run -d -p 8070:8080 signin/hello"
+                sh "docker run -itd --name newlogcon -p 8090:8080 newimg2"
+                sh 'docker ps'
             }
         }
-        /*stage('Run docker container on remote hosts'){
-            steps{
-                sh "docker -H ssh://ec2-user@ip-43.205.143.129 run -d -p 8070:8080 signin/hello"
-            }
-        }*/
-        /*stage('Docker Build'){
-            agent{
-                label 'doc'
-            }
-            steps{
-                sh '''docker build -t demo:${DOCKER_TAG} .    
-                    docker tag demo signin/hello:${DOCKER_TAG}
-                    '''   
-            }
-        }
-        stage('Docker Image Push'){
-            agent{
-                label 'doc'
-            }
-            steps{
-                withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'docpwd', usernameVariable: 'docuser')]) {
-                sh "docker login -u signin -p ${docpwd}"
-                sh "docker push signin/hello:${DOCKER_TAG}"
-                sh "docker run -d -p 8080:8080 signin/hello"
-                }
-                }
-            }*/
-        /*stage('Run docker container'){
-            agent{
-                label 'doc'
-            }
-            steps{
-                sh "docker run -d -p 8080:8080 signin/hello"
-            }
-        }*/
-        /*stage('Pull deployment file') {
+        stage('Pull deployment file') {
             agent {
                 label 'kub'
             }
@@ -132,14 +121,14 @@ pipeline{
             steps{
                 script{
                     sh "chmod +x changeTag.sh"
-                    sh "./changeTag.sh ${DOCKER_TAG}"
+                    sh "./changeTag.sh latest"
                     sh "kubectl apply -f services.yaml"
                     sh "kubectl apply -f node-app.yaml"    //will run deployment file
                     sh "kubectl get pods" 
                 }
                 echo '**********Through Kubernetes, docker image is running as a pod & deployed to cluster**********'
             }
-        }*/
+        }
     }
 }
 def getVersion(){
