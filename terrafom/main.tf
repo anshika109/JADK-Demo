@@ -77,6 +77,13 @@ resource "aws_security_group" "dev-security" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
+    description       = "Nexus"
+    from_port         = 8081
+    to_port           = 8081
+    protocol          =  "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
     description       = "SSH"     // to connect to instance
     from_port         = 22
     to_port           = 22
