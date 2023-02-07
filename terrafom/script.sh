@@ -7,6 +7,7 @@ amazon-linux-extras install java-openjdk11
 yum -y install wget
 wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.63/bin/apache-tomcat-9.0.63.tar.gz
 tar -zvxf apache-tomcat-9.0.63.tar.gz
+# chmod +x /opt/apache-tomcat-9.0.63
 cd apache-tomcat-9.0.63
 cd bin
 chmod +x /opt/apache-tomcat-9.0.63/bin/*.sh
