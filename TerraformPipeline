@@ -1,0 +1,64 @@
+pipeline{
+    
+        environment {
+        def ARTID = 'LoginWebApp'
+        def ARTTYPE = 'war'
+        def ARTGRPID = 'com.ltidevops'
+        def ARTURL = '43.205.203.163:8081'  //change ip
+        def ARTREPO = 'demo'  
+        def ARTVER = '1'
+        def ARTPROTO = 'http'
+        def ARTDOWPATH = '$ARTPROTO://$ARTURL/repository/$ARTREPO' //http://3.108.44.96:8081/repository/hello/
+    }
+
+    agent any
+    tools {
+        terraform 'terraform-11'
+        maven 'maven3'
+    }
+    stages{
+        stage('Git checkout'){
+            steps{
+                git credentialsId: 'git', url: 'https://github.com/anshika109/JADK-Demo'
+            }
+        }
+        stage('Maven'){
+            steps{
+                sh "mvn clean package"
+            }
+        }
+        stage("Upload Artifactory to Nexus"){
+            steps{
+                script{
+                  def mavenPom = readMavenPom file: 'pom.xml'
+                  nexusArtifactUploader(
+                    nexusVersion: 'nexus3',
+                    protocol: "${env.ARTPROTO}",
+                    nexusUrl: "${env.ARTURL}",  
+                    groupId:  "${mavenPom.groupId}",
+                    version: "${mavenPom.version}",
+                    repository: "${env.ARTREPO}",
+                    credentialsId: "nexus",   //nexus3 //shubhnexus
+                    artifacts: [
+                        [artifactId: 'LoginWebApp',  
+                         classifier: '',
+                         file: "target/LoginWebApp-${mavenPom.version}.${mavenPom.packaging}",
+                         type: "${mavenPom.packaging}"] 
+                    ]
+                    )
+                }
+           }
+        }
+        stage('Terraform Apply'){
+            steps{
+                dir('terrafom') {
+                    sh "pwd"
+                    sh 'terraform init'
+                    sh 'terraform plan'
+                    //sh 'terraform apply --auto-approve'
+                    sh 'terraform destroy --auto-approve'
+                }
+            }
+        }
+    }
+}
