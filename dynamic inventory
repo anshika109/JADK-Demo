@@ -19,3 +19,15 @@ filters:
   What is the comand to run or list the running instnace ?
   Ans:- 
   ansible-inventory -i <full path of inventory file> 
+
+ansible aws_ec2 -i aws_ec2.yml -m ping --private-key=ec2.pem    // aws_ec2 is group which is made by ansible itself and we are pinging
+that group through dynamic inventory file along with private pem key. also attched administrator access role to ec2 instance.
+
+---
+plugin: aws_ec2
+region:
+  - ap-south-1
+filters:
+  tag:Name:     // here Name is key and temp is value i.e. host instance 
+    - temp
+  
